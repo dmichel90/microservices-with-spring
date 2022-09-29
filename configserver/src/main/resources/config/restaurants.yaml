@@ -1,0 +1,69 @@
+# https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-endpoints-caching
+management:
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info,env,refresh
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      group:
+        readiness:
+          include: db
+      show-details: when_authorized
+      show-components: always
+  server:
+    port: 8081
+# Standard Log Settings for Logback
+logging:
+  level:
+    root: INFO
+    de.dmichel90.restaurant.security: DEBUG
+  file:
+    name: ${logging.file.path}/application.log
+    path: logs
+    pattern:
+      file: '%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n'
+      console: '%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n'
+    logback:
+      rollingpolicy:
+        max-history: 30
+        max-file-size: 10MB
+        file-name-pattern: '${logging.file.path}/application-%d{yyyy-MM-dd}.%i.log'
+server:
+  port: 8080
+spring:
+  # Database
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/restaurant_db
+    username: restaurant_finder_user
+    password: geheim
+  # JPA properties
+  jpa:
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:7080/auth/realms/blueprint/protocol/openid-connect/certs
+  zipkin:
+    base-url: http://localhost:9411/
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8070/eureka/
+

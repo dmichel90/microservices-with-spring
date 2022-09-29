@@ -1,0 +1,11 @@
+# shows value POM in /actuator/info
+info:
+  name: @project.name@
+  version: @project.version@
+  description: @project.description@
+spring:
+  config:
+    import: optional:configserver:http://localhost:8071
+  application:
+    name: restaurants
+

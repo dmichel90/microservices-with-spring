@@ -1,0 +1,138 @@
+openapi: 3.0.3
+info:
+  description: This specification describes the API for the restaurant service
+  title: restaurant-service
+  version: 1.0.0
+servers:
+- url: http://localhost:8080/v1
+tags:
+- name: restaurant
+paths:
+  /restaurants:
+    get:
+      operationId: getRestaurants
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Restaurant'
+                type: array
+          description: successful operation
+      summary: returns a list of restaurants
+      tags:
+      - restaurant
+      x-accepts: application/json
+      x-tags:
+      - tag: restaurant
+    post:
+      operationId: createRestaurant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Restaurant'
+        description: the persisted restaurant
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Restaurant'
+          description: successful operation
+      summary: create an restaurant
+      tags:
+      - restaurant
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: restaurant
+    put:
+      operationId: updateRestaurant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Restaurant'
+        description: the updated restaurant
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Restaurant'
+          description: successful operation
+      summary: update existing restaurant
+      tags:
+      - restaurant
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: restaurant
+  /restaurants/{id}:
+    delete:
+      operationId: deleteRestaurant
+      parameters:
+      - description: restaurant's ID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: successful operation
+      summary: delete restaurant with given ID
+      tags:
+      - restaurant
+      x-accepts: application/json
+      x-tags:
+      - tag: restaurant
+components:
+  schemas:
+    Nationality:
+      description: the restaurant's base nationality ...
+      enum:
+      - Italian
+      - Asian
+      - Greek
+      type: string
+      x-enum-varnames:
+      - ITALIAN
+      - ASIAN
+      - GREEK
+    Restaurant:
+      description: the restaurant DTO
+      example:
+        address: "{}"
+        nationality: null
+        street: street
+        postalCode: postalCode
+        name: name
+        houseNumber: houseNumber
+        id: id
+      properties:
+        id:
+          description: the ID
+          type: string
+        nationality:
+          $ref: '#/components/schemas/Nationality'
+        address:
+          $ref: '#/components/schemas/Address'
+        name:
+          description: the restaurant's name
+          type: string
+        postalCode:
+          maxLength: 5
+          minLength: 5
+          type: string
+        street:
+          type: string
+        houseNumber:
+          type: string
+      type: object

@@ -14,7 +14,6 @@
     <modules>
         <module>configserver</module>
         <module>eurekaserver</module>
-        <!--<module>gatewayserver</module>
-        <module>accounts_service</module>-->
+        <module>restaurant-service</module>
     </modules>
 </project>

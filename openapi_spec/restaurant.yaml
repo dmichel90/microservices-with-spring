@@ -1,0 +1,120 @@
+---
+openapi: 3.0.3
+
+info:
+  title: restaurant-service
+  version: 1.0.0
+  description: "This specification describes the API for
+    the restaurant service"
+
+servers:
+  - url: http://localhost:8080/v1
+
+tags:
+  - name: restaurant
+
+paths:
+  /restaurants:
+    get:
+      tags:
+        - restaurant
+      summary: returns a list of restaurants
+      operationId: getRestaurants
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Restaurant"
+    post:
+      tags:
+        - restaurant
+      summary: create an restaurant
+      operationId: createRestaurant
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Restaurant"
+      requestBody:
+        description: the persisted restaurant
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Restaurant"
+    put:
+      tags:
+        - restaurant
+      summary: update existing restaurant
+      operationId: updateRestaurant
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Restaurant"
+      requestBody:
+        description: the updated restaurant
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Restaurant"
+  /restaurants/{id}:
+    delete:
+      tags:
+        - restaurant
+      summary: delete restaurant with given ID
+      operationId: deleteRestaurant
+      parameters:
+        - name: id
+          in: path
+          description: restaurant's ID
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: successful operation
+components:
+  schemas:
+    Nationality:
+      description: the restaurant's base nationality ...
+      type: string
+      enum:
+        - Italian
+        - Asian
+        - Greek
+      x-enum-varnames:
+        - ITALIAN
+        - ASIAN
+        - GREEK
+    Restaurant:
+      description: the restaurant DTO
+      type: object
+      properties:
+        id:
+          description: the ID
+          type: string
+        nationality:
+          $ref: "#/components/schemas/Nationality"
+        address:
+          $ref: "#/components/schemas/Address"
+        name:
+          description: the restaurant's name
+          type: string
+        postalCode:
+          type: string
+          maxLength: 5
+          minLength: 5
+        street:
+          type: string
+        houseNumber:
+          type: string
