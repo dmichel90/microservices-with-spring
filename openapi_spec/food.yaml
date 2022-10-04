@@ -1,0 +1,146 @@
+---
+openapi: 3.0.3
+
+info:
+  title: food-service
+  version: 1.0.0
+  description: "This specification describes the API for
+    the food service"
+
+servers:
+  - url: http://localhost:8080/v1
+
+tags:
+  - name: dish
+  - name: restaurant
+
+
+paths:
+  /dishes:
+    get:
+      tags:
+        - dish
+      summary: returns a list of available dishes
+      operationId: getDishes
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Dish"
+    post:
+      tags:
+        - dish
+      summary: create a dish
+      operationId: createDish
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Dish"
+      requestBody:
+        description: the persisted dish
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Dish"
+    put:
+      tags:
+        - dish
+      summary: update existing dish
+      operationId: updateDish
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Dish"
+      requestBody:
+        description: the updated dish
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Dish"
+  /dishes/{id}/restaurants/{restaurant_id}:
+    delete:
+      tags:
+        - dish
+        - restaurant
+      summary: delete dish with given ID for the given restaurant
+      operationId: deleteDishForRestaurant
+      parameters:
+        - name: id
+          in: path
+          description: ID of the dish
+          required: true
+          schema:
+            type: string
+        - name: restaurant_id
+          in: path
+          description: restaurant's ID
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: successful operation
+  /dishes/restaurants/{restaurant_id}:
+    delete:
+      tags:
+        - restaurant
+        - dish
+      summary: get all available dishes for restaurant with given ID
+      operationId: getDishesByRestaurant
+      parameters:
+        - name: restaurant_id
+          in: path
+          description: restaurant's ID
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Dish"
+components:
+  schemas:
+    FoodType:
+      description: whether the food is with meat, vegetarian oder vegan
+      type: string
+      enum:
+        - With-Meat
+        - Vegetarian
+        - Vegan
+      x-enum-varnames:
+        - WITH_MEAT
+        - VEGETARIAN
+        - VEGAN
+    Dish:
+      description: a dish
+      type: object
+      properties:
+        id:
+          description: the ID
+          type: string
+        name:
+          description: the restaurant's name
+          type: string
+        description:
+          type: string
+        type:
+          $ref: "#/components/schemas/FoodType"
+        restaurantId:
+          type: string
