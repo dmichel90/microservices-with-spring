@@ -1,6 +1,5 @@
 package de.dmichel90.restaurant.domain;
 
-import de.dmichel90.restaurant.model.Address;
 import de.dmichel90.restaurant.model.Nationality;
 import lombok.*;
 

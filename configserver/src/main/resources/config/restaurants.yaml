@@ -42,7 +42,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/restaurant_db
     username: restaurant_finder_user
-    password: geheim
+    password: secret
   # JPA properties
   jpa:
     show-sql: true
