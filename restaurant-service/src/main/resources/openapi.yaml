@@ -93,6 +93,30 @@ paths:
       x-accepts: application/json
       x-tags:
       - tag: restaurant
+    get:
+      operationId: getRestaurantById
+      parameters:
+      - description: restaurant's ID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Restaurant'
+          description: successful operation
+      summary: get restaurant with given ID
+      tags:
+      - restaurant
+      x-accepts: application/json
+      x-tags:
+      - tag: restaurant
 components:
   schemas:
     Nationality:
@@ -109,12 +133,24 @@ components:
     Restaurant:
       description: the restaurant DTO
       example:
-        address: "{}"
         nationality: null
         street: street
         postalCode: postalCode
         name: name
         houseNumber: houseNumber
+        dishes:
+        - price: 0.8008281904610115
+          name: name
+          description: description
+          id: id
+          type: null
+          restaurantId: restaurantId
+        - price: 0.8008281904610115
+          name: name
+          description: description
+          id: id
+          type: null
+          restaurantId: restaurantId
         id: id
       properties:
         id:
@@ -122,8 +158,6 @@ components:
           type: string
         nationality:
           $ref: '#/components/schemas/Nationality'
-        address:
-          $ref: '#/components/schemas/Address'
         name:
           description: the restaurant's name
           type: string
@@ -135,4 +169,56 @@ components:
           type: string
         houseNumber:
           type: string
+        dishes:
+          description: all dishes that are served in the restaurant
+          items:
+            $ref: '#/components/schemas/Dish'
+          type: array
       type: object
+    FoodType:
+      description: "whether the food is with meat, vegetarian oder vegan"
+      enum:
+      - With-Meat
+      - Vegetarian
+      - Vegan
+      type: string
+      x-enum-varnames:
+      - WITH_MEAT
+      - VEGETARIAN
+      - VEGAN
+    Dish:
+      description: a dish
+      example:
+        price: 0.8008281904610115
+        name: name
+        description: description
+        id: id
+        type: null
+        restaurantId: restaurantId
+      properties:
+        id:
+          description: the ID
+          type: string
+        name:
+          description: the restaurant's name
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        type:
+          $ref: '#/components/schemas/food-type'
+        restaurantId:
+          type: string
+      type: object
+    food-type:
+      description: "whether the food is with meat, vegetarian oder vegan"
+      enum:
+      - With-Meat
+      - Vegetarian
+      - Vegan
+      type: string
+      x-enum-varnames:
+      - WITH_MEAT
+      - VEGETARIAN
+      - VEGAN

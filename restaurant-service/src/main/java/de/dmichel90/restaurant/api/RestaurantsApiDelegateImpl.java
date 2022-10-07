@@ -30,6 +30,11 @@ public class RestaurantsApiDelegateImpl implements RestaurantsApiDelegate {
     }
 
     @Override
+    public ResponseEntity<Restaurant> getRestaurantById(String id) {
+        return ResponseEntity.ok(restaurantService.findById(id));
+    }
+
+    @Override
     public ResponseEntity<List<Restaurant>> getRestaurants() {
         return ResponseEntity.ok(restaurantService.getRestaurants());
     }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+      http://www.liquibase.org/xml/ns/pro
+      http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+    <changeSet author="dmichel" id="1">
+        <insert tableName="restaurant">
+            <column name="id" value="63213e84-b6f7-4f38-a895-947c3485dbc6"/>
+            <column name="name" value="Bella Italia"/>
+            <column name="nationality" value="ITALIAN"/>
+            <column name="postal_code" value="12345"/>
+            <column name="street" value="Route 66"/>
+            <column name="house_number" value="7"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
