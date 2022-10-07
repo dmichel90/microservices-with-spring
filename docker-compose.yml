@@ -55,8 +55,6 @@ services:
       - "9000:9000"
   
   zipkin:
-    profiles:
-      - zipkin
     image: openzipkin/zipkin
     ports:
       - "9411:9411"
