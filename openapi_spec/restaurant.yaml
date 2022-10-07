@@ -83,38 +83,32 @@ paths:
       responses:
         204:
           description: successful operation
+    get:
+      tags:
+        - restaurant
+      summary: get restaurant with given ID
+      operationId: getRestaurantById
+      parameters:
+        - name: id
+          in: path
+          description: restaurant's ID
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Restaurant"
 components:
   schemas:
     Nationality:
-      description: the restaurant's base nationality ...
-      type: string
-      enum:
-        - Italian
-        - Asian
-        - Greek
-      x-enum-varnames:
-        - ITALIAN
-        - ASIAN
-        - GREEK
+      $ref: './dto/nationality.yaml'
     Restaurant:
-      description: the restaurant DTO
-      type: object
-      properties:
-        id:
-          description: the ID
-          type: string
-        nationality:
-          $ref: "#/components/schemas/Nationality"
-        address:
-          $ref: "#/components/schemas/Address"
-        name:
-          description: the restaurant's name
-          type: string
-        postalCode:
-          type: string
-          maxLength: 5
-          minLength: 5
-        street:
-          type: string
-        houseNumber:
-          type: string
+      $ref: './dto/restaurant.yaml'
+    FoodType:
+      $ref: './dto/food-type.yaml'
+    Dish:
+      $ref: './dto/dish.yaml'

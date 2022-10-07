@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.dmichel90.restaurant-finder</groupId>
     <artifactId>aggregator</artifactId>
-    <description>aggregator pom for the java blueprint</description>
+    <description>aggregator pom for the restaurant findet</description>
     <version>1.0.0</version>
     <packaging>pom</packaging>
     <properties>

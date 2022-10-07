@@ -1,0 +1,24 @@
+description: the restaurant DTO
+type: object
+properties:
+  id:
+    description: the ID
+    type: string
+  nationality:
+    $ref: "./nationality.yaml"
+  name:
+    description: the restaurant's name
+    type: string
+  postalCode:
+    type: string
+    maxLength: 5
+    minLength: 5
+  street:
+    type: string
+  houseNumber:
+    type: string
+  dishes:
+    description: all dishes that are served in the restaurant
+    type: array
+    items:
+      $ref: "./dish.yaml"

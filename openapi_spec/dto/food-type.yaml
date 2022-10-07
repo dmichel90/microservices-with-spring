@@ -1,0 +1,10 @@
+description: whether the food is with meat, vegetarian oder vegan
+type: string
+enum:
+  - With-Meat
+  - Vegetarian
+  - Vegan
+x-enum-varnames:
+  - WITH_MEAT
+  - VEGETARIAN
+  - VEGAN

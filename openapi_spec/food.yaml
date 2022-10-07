@@ -8,7 +8,7 @@ info:
     the food service"
 
 servers:
-  - url: http://localhost:8080/v1
+  - url: http://localhost:8090/v1
 
 tags:
   - name: dish
@@ -93,7 +93,7 @@ paths:
         204:
           description: successful operation
   /dishes/restaurants/{restaurant_id}:
-    delete:
+    get:
       tags:
         - restaurant
         - dish
@@ -118,29 +118,6 @@ paths:
 components:
   schemas:
     FoodType:
-      description: whether the food is with meat, vegetarian oder vegan
-      type: string
-      enum:
-        - With-Meat
-        - Vegetarian
-        - Vegan
-      x-enum-varnames:
-        - WITH_MEAT
-        - VEGETARIAN
-        - VEGAN
+      $ref: './dto/food-type.yaml'
     Dish:
-      description: a dish
-      type: object
-      properties:
-        id:
-          description: the ID
-          type: string
-        name:
-          description: the restaurant's name
-          type: string
-        description:
-          type: string
-        type:
-          $ref: "#/components/schemas/FoodType"
-        restaurantId:
-          type: string
+      $ref: './dto/dish.yaml'

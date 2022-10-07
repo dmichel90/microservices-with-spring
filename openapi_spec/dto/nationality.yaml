@@ -1,0 +1,10 @@
+description: the restaurant's base nationality ...
+type: string
+enum:
+  - Italian
+  - Asian
+  - Greek
+x-enum-varnames:
+  - ITALIAN
+  - ASIAN
+  - GREEK

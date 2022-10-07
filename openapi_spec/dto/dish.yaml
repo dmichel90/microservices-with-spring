@@ -1,0 +1,15 @@
+description: a dish
+type: object
+properties:
+  id:
+    description: the ID
+    type: string
+  name:
+    description: the restaurant's name
+    type: string
+  description:
+    type: string
+  price:
+    type: number
+  type:
+    $ref: "./food-type.yaml"
