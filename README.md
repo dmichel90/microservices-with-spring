@@ -1,4 +1,4 @@
-# Restaurant findet
+# Restaurant finder
 This project is based upon Spring Boot, Docker and openApi.
 
 ## Structure
