@@ -4,6 +4,7 @@ import de.dmichel90.food.model.FoodType;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -20,6 +21,9 @@ public class DishEntity extends BaseEntity {
 
     @Column
     private String description;
+
+    @Column
+    private BigDecimal price;
 
     @Column
     @Enumerated(EnumType.STRING)

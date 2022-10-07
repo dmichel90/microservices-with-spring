@@ -8,7 +8,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "dish")
+@Table(name = "dish_restaurant")
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class DishRestaurantEntity extends BaseEntity {

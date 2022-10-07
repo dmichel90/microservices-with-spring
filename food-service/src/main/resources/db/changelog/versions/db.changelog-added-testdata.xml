@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+      http://www.liquibase.org/xml/ns/pro
+      http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+    <changeSet author="dmichel" id="1">
+        <insert tableName="dish">
+            <column name="id" value="67916704-c9e8-4589-aed9-19908fb484c2"/>
+            <column name="name" value="Spaghetti Carbonara"/>
+            <column name="description" value="Spaghetti with sauce Carbonara"/>
+            <column name="price" value="12.99"/>
+            <column name="food_type" value="WITH_MEAT"/>
+        </insert>
+        <insert tableName="dish">
+            <column name="id" value="dbcb0ee2-830a-4733-975e-12979517386a"/>
+            <column name="name" value="Pizza Margeritha"/>
+            <column name="description" value="Pizza with cheese and tomatos"/>
+            <column name="price" value="10.99"/>
+            <column name="food_type" value="VEGETARIAN"/>
+        </insert>
+        <insert tableName="dish">
+            <column name="id" value="a7991905-6af6-4dae-ad40-39e9095b6d3b"/>
+            <column name="name" value="Lasagne Bolognese"/>
+            <column name="description" value="Lasagne with minced meat, cheese and tomato sauce"/>
+            <column name="price" value="10.99"/>
+            <column name="food_type" value="VEGETARIAN"/>
+        </insert>
+        <insert tableName="dish_restaurant">
+            <column name="id" value="29c39c6f-b41b-41ab-9713-9a3b92e295b7"/>
+            <column name="restaurant_id" value="63213e84-b6f7-4f38-a895-947c3485dbc6"/>
+            <column name="dish_id" value="67916704-c9e8-4589-aed9-19908fb484c2"/>
+        </insert>
+        <insert tableName="dish_restaurant">
+            <column name="id" value="a70adb4f-9ea6-491d-9849-2ef41d942b3a"/>
+            <column name="restaurant_id" value="63213e84-b6f7-4f38-a895-947c3485dbc6"/>
+            <column name="dish_id" value="dbcb0ee2-830a-4733-975e-12979517386a"/>
+        </insert>
+        <insert tableName="dish_restaurant">
+            <column name="id" value="08c61994-566f-496f-b058-6b90a3e5e506"/>
+            <column name="restaurant_id" value="63213e84-b6f7-4f38-a895-947c3485dbc6"/>
+            <column name="dish_id" value="a7991905-6af6-4dae-ad40-39e9095b6d3b"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

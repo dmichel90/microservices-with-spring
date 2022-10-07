@@ -4,7 +4,7 @@ info:
   title: food-service
   version: 1.0.0
 servers:
-- url: http://localhost:8080/v1
+- url: http://localhost:8090/v1
 tags:
 - name: dish
 - name: restaurant
@@ -104,7 +104,7 @@ paths:
       - tag: dish
       - tag: restaurant
   /dishes/restaurants/{restaurant_id}:
-    delete:
+    get:
       operationId: getDishesByRestaurant
       parameters:
       - description: restaurant's ID
@@ -147,11 +147,11 @@ components:
     Dish:
       description: a dish
       example:
+        price: 0.8008281904610115
         name: name
         description: description
         id: id
         type: null
-        restaurantId: restaurantId
       properties:
         id:
           description: the ID
@@ -161,8 +161,19 @@ components:
           type: string
         description:
           type: string
+        price:
+          type: number
         type:
-          $ref: '#/components/schemas/FoodType'
-        restaurantId:
-          type: string
+          $ref: '#/components/schemas/food-type'
       type: object
+    food-type:
+      description: "whether the food is with meat, vegetarian oder vegan"
+      enum:
+      - With-Meat
+      - Vegetarian
+      - Vegan
+      type: string
+      x-enum-varnames:
+      - WITH_MEAT
+      - VEGETARIAN
+      - VEGAN
