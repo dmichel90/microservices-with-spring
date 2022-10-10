@@ -4,18 +4,18 @@ This project is based upon Spring Boot, Docker and openApi.
 ## Structure
 The project consists of four microservices:
 - restaurant-service,
-- food-service
+- food-service,
 - configserver,
 - eurekaserver,
 
-and a small java library for common classes. In addition, the API is described via openApi and all the environment is provided via docker.
+and a small java library for common classes. In addition, the API is described via openApi and the environment is setup via docker.
 
-The purpose of each microservices is described in the following chapters.
+The purpose of each microservice is described in the following chapters.
 
 ### configserver
 The configserver is a microservice that is based on the Spring Cloud Config project. It provides nearly all configuration 
 parameters for all other microservices. They can be stored in the filesystem or on github or in any other subversion tool 
-or JDBC compatible database. In this projeect, they are stored in the filesystem.
+or JDBC compatible database. In this project, they are stored in the filesystem.
 
 The mapping from the configuration parameters to the suitable microservice is done via the parameter `spring.application.name`.
 For instance, the configuration for the restaurant-service is stored in a file called `restaurant.yaml` and the spring.application.name
@@ -32,7 +32,7 @@ All microservices that are supposed to register themselves at the eurekaserver n
 seen in the file `restaurant.yaml`.
 
 ### restaurant-service
-The restaurant-service is a microservice that offers a simple REST-API for CRUD operations. It usese the food-service via a feign client
+The restaurant-service is a microservice that offers a simple REST-API for CRUD operations. It uses the food-service via a feign client
 
 The API is described via openAPI. Therefore, the API has to be built via an openAPI-command. For this purpose, we use a
 maven plugin. With following command, the API can be generated
