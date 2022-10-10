@@ -1,0 +1,49 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          # disable if only self defined routes are meant to work
+          enabled: true
+          lower-case-service-id: true
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            token-uri: http://localhost:7080/auth/realms/restaurant/protocol/openid-connect/token
+            authorization-uri: http://localhost:7080/auth/realms/restaurant/protocol/openid-connect/auth
+            user-info-uri: http://localhost:7080/auth/realms/restaurant/protocol/openid-connect/userinfo
+            user-name-attribute: preferred_username
+        registration:
+          restaurant-gateway:
+            provider: keycloak
+            client-id: restaurant-gateway-ui
+            client-secret: AEvcxwqv25gcqlwpQGmqsETaN0D6b6XQb
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
+  zipkin:
+    base-url: http://localhost:9411/
+management:
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info,env,refresh,gateway
+logging:
+  level:
+    de:
+      dmichel90:
+        gatewayserver: DEBUG
+server:
+  port: 8072
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8070/eureka/
+    fetch-registry: true
+    register-with-eureka: true

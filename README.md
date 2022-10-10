@@ -56,10 +56,11 @@ located at the root level of this get repository inside the folder `openapi_spec
 
 ## Security
 Keycloak is set up as identity provider in this scenario. It can be started via docker. During the docker start process a
-realm is created. This includes the creation of a client in the realm that represents a potential gatewayserver and a user 
-(ben, benspassword). For instance with postman a token can be retrieved and then a request can be done with the JWT token. The 
-authorization check is not implemented yet. Right now, an authenticated user can access the restaurant-service endpoints. The
-food-service does not requrire any kind of authorization right now.
+realm is created. This includes the creation of a client in the realm for the gatewayserver and a user 
+(ben, benspassword). So, if http://localhost:8072/dmichel90/restaurants/v1/restaurants is called, the user will be prompted 
+to login. After a successful login, the user will be redirected to the original request. The food-service does not 
+requrire any kind of authorization right now. In theory, the food-service is not supposed to be open to the 'outside world' 
+or it has to be secured, too. (The OpenFeignClient has to be updated in this case.)
 
 ## Docker
 All surrounding components like keycloak and the database can be started via docker with the command

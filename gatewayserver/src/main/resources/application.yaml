@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: gatewayserver
+  config:
+    import: optional:configserver:http://localhost:8071
+info:
+  name: @project.name@
+  version: @project.version@
+  description: @project.description@
